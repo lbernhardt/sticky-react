@@ -1,0 +1,21 @@
+/*.App{
+
+}*/
+
+.Sticky {
+  background-color: khaki;
+  width: 250px;
+  padding: 10px;
+  position: relative;
+  min-height: 200px;
+  margin: 10px;
+  overflow: auto;
+}
+
+ul{
+  list-style: none;
+}
+
+li{
+  float: left;
+}
