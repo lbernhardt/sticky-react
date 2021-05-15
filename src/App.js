@@ -33,9 +33,16 @@ function App() {
     }
   }
 
+  function handleEditNote(data){
+    setNote(data);
+  }
+
+  function handleEditTitle(data){
+    setTitle(data);
+  }
+
   return (
     <div className="App">
-
       <div>
         <label>Título</label>
         <input type="text" name="title" onChange={handleChange}/> 
@@ -49,7 +56,14 @@ function App() {
       <div>
         <ul>
         {arrStickies.map( sticky => 
-          <li key={Math.random()}><Sticky title={sticky.title} note={sticky.note}/></li>
+          <li key={Math.random()}>
+            <Sticky 
+                title={sticky.title} 
+                note={sticky.note}
+                editNoteCallback={handleEditNote}
+                editTitleCallback={handleEditTitle}
+            />
+          </li>
         )}
         </ul>
       </div>

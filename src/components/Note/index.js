@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { Component, useState } from 'react';
+import { EditText, EditTextarea } from 'react-edit-text';
+import 'react-edit-text/dist/index.css';
+
 
 function Note(props) {
+
+    const [note, setNote] = useState(props.note);
+
+    function handeChange(value){
+        setNote(value);
+    }
+
     return (
-        <p>{props.note}</p>
+        <EditTextarea value={note} onChange={handeChange} />
     );
 }
 

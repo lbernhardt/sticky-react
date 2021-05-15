@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { Component, useState } from 'react';
+import { EditText, EditTextarea } from 'react-edit-text';
+import 'react-edit-text/dist/index.css';
+
 
 function Title(props) {
+
+    const[title, setTitle] = useState(props.title);
+
+    function handleChange(value){
+        setTitle(value);
+    }
+
     return (
-        <h3>{props.title}</h3>
+        <h3><EditText value={title} onChange={handleChange} /></h3>
     );
 }
 
