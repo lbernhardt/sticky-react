@@ -12,7 +12,7 @@ function Note(props) {
     }
 
     return (
-        <EditTextarea value={note} onChange={handeChange} />
+        <EditTextarea placeholder="Note" value={note} onChange={handeChange}/>
     );
 }
 

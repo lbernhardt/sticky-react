@@ -12,7 +12,7 @@ function Title(props) {
     }
 
     return (
-        <h3><EditText value={title} onChange={handleChange} /></h3>
+        <h3><EditText placeholder="Title" value={title} onChange={handleChange} /></h3>
     );
 }
 

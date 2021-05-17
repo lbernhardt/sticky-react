@@ -2,6 +2,15 @@
 
 }*/
 
+.Maker{
+  text-align: center;
+}
+
+.InputMaker{
+  width: 300px;
+  border-radius: 3px;
+}
+
 .Sticky {
   background-color: khaki;
   width: 250px;
