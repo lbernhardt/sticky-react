@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import Sticky from '../../components/Sticky';
 import './App.css';
 import Config from '../../config.json';
+import MyHeader from '../../components/Header'
+import { Container, Header, Content, TagGroup, Tag} from 'rsuite';
+import 'rsuite/dist/styles/rsuite-dark.css';
+import { Button } from 'rsuite';
 
 function App() {
 
@@ -79,35 +83,52 @@ function App() {
   }   
 
   return (
-    <div className="App">
-      <nav>
-        <Link to="/example">Example page</Link>
-      </nav>
-      <section className="Maker">
-        <div>
-          <input value={title} className="InputMaker" placeholder="Title" type="text" name="title" onChange={handleChange}/> 
-        </div>
-        <div>
-          <textarea value={note} className="InputMaker" placeholder="Note" type="textbox" name="note" onChange={handleChange}/> 
-        </div>
-        <input type="button" onClick={handleClick} value="+" />
-      </section>
-      <section>
-        <ul>
-        {arrStickies.map( sticky => 
-          <li key={sticky.id}>
-            <Sticky
-                id={sticky.id}
-                title={sticky.title} 
-                note={sticky.note}
-                editNoteCallback={handleEditNote}
-                editTitleCallback={handleEditTitle}
-                removeStickyCallback={handleClickRemove}
-            />
-          </li>
-        )}
-        </ul>
-      </section>
+    <div>
+      <Container>
+        <MyHeader />
+        <Container style={{ padding: 12 }}>
+          <Header>
+            <h2>Stickies  </h2>
+          </Header>
+            <Content>
+              <section className="Maker">
+                <div>
+                  <input value={title} className="InputMaker" placeholder="Title" type="text" name="title" onChange={handleChange}/> 
+                </div>
+                <div>
+                  <textarea value={note} className="InputMaker" placeholder="Note" type="textbox" name="note" onChange={handleChange}/> 
+                </div>
+                
+                <TagGroup>
+                  <Tag color="red">Red</Tag>
+                  <Tag color="orange">Orange</Tag>
+                  <Tag color="yellow">Yellow</Tag>
+                  <Tag color="green">Green</Tag>
+                  <Tag color="cyan">Cyan</Tag>
+                  <Tag color="blue">Blue</Tag>
+                  <Tag color="violet">Violet</Tag>
+                </TagGroup>
+                <Button appearance="primary" onClick={handleClick} value="+" />
+              </section>
+              <section>
+                <ul>
+                {arrStickies.map( sticky => 
+                  <li key={sticky.id}>
+                    <Sticky
+                        id={sticky.id}
+                        title={sticky.title} 
+                        note={sticky.note}
+                        editNoteCallback={handleEditNote}
+                        editTitleCallback={handleEditTitle}
+                        removeStickyCallback={handleClickRemove}
+                    />
+                  </li>
+                )}
+                </ul>
+              </section>
+            </Content>
+          </Container>
+        </Container>
     </div>
   );
 }
