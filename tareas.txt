@@ -1,0 +1,16 @@
+
+
+HACER EL LOGIN
+
+hacer el update de las stickies
+
+hacer el delete
+
+mandar el usuario en el post
+
+en el fetch tienen que venir las del usuario
+
+crearle un key para el li 
+
+que se pueda elegir el color y guardarlo en la db
+

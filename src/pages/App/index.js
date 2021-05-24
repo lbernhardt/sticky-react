@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import Sticky from '../../components/Sticky';
 import './App.css';
+import Config from '../../config.json';
 
 function App() {
 
@@ -9,16 +10,44 @@ function App() {
   const [note, setNote] = useState("");
   const [arrStickies, setArrStickies] = useState([]); 
 
+  useEffect(() => {
+    fetchStickies()
+  }, []);
+
   const sticky = {
     id : Math.random(),
     title : title,
     note : note
   };
 
+  function fetchStickies() {
+    fetch(Config.apiGetAll)
+        .then(res => res.json())
+        .then((data) => {          
+          const arrStickies = data.stickies;
+          setArrStickies(arrStickies);
+        })
+        .catch(console.log)
+  }
+
+  function saveSticky(sticky) {
+
+    fetch(Config.apiPost, {
+      method: 'POST',
+      body: JSON.stringify(sticky ),
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(res => res.json())
+      .then((data) => {          
+        const newArrStickies = [...arrStickies, data.sticky];
+        setArrStickies(newArrStickies);
+      })
+      .catch(console.log)
+  }
+
   function handleClick() {
     
-    const newArrStickies = [...arrStickies, sticky];
-    setArrStickies(newArrStickies);
+    saveSticky(sticky);
 
     setTitle("");
     setNote("");
