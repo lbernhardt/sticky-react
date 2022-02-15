@@ -1,5 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {Navbar, Nav, Dropdown, Icon, Header } from 'rsuite';
+import * as AuthenticationService from '../../services/authenticationService'
+
+function handleClickLogout(e){
+  AuthenticationService.logout();
+}
 
 function MyHeader () {
   return (
@@ -21,6 +26,7 @@ function MyHeader () {
           </Nav>
           <Nav pullRight>
             <Nav.Item icon={<Icon icon="cog" />}>Settings</Nav.Item>
+            <Nav.Item onClick={handleClickLogout}>Logout</Nav.Item>
           </Nav>
         </Navbar.Body>
       </Navbar>

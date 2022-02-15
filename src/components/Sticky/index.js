@@ -7,7 +7,7 @@ function Sticky(props){
     
     return (
 
-        <Panel shaded bordered bodyFill style={{ display: 'inline-block', width: 240, margin: 5 }}>
+        <Panel className={props.colorClass} shaded bordered bodyFill style={{ display: 'inline-block', width: 240, margin: 5}}>
             <Title title={props.title} callback={props.editNoteCallback}/>
             <Note note={props.note} callback={props.editNoteCallback}/>
             <input type="button" value="Remove" itemID={props.id} onClick={props.removeStickyCallback}/>

@@ -1,8 +1,12 @@
 
 
-HACER EL LOGIN
+[OK] implementar la UI
 
-hacer el update de las stickies
+[OK ]HACER EL LOGIN
+
+[OK ]HACER EL LOGOUT
+
+[OK] hacer el update de las stickies
 
 hacer el delete
 

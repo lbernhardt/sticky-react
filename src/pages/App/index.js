@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Sticky from '../../components/Sticky';
 import './App.css';
 import Config from '../../config.json';
@@ -7,11 +7,14 @@ import MyHeader from '../../components/Header'
 import { Container, Header, Content, TagGroup, Tag} from 'rsuite';
 import 'rsuite/dist/styles/rsuite-dark.css';
 import { Button } from 'rsuite';
+import Login from '../Login'
+import * as AuthenticationService from '../../services/authenticationService'
 
 function App() {
 
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
+  const [colorClass, setColorClass] = useState("");
   const [arrStickies, setArrStickies] = useState([]); 
 
   useEffect(() => {
@@ -21,11 +24,13 @@ function App() {
   const sticky = {
     id : Math.random(),
     title : title,
-    note : note
+    note : note,
+    user : AuthenticationService.getCurrentUser(),
+    colorClass: colorClass
   };
 
   function fetchStickies() {
-    fetch(Config.apiGetAll)
+    fetch(Config.apiGetAll + "/" + AuthenticationService.getCurrentUser())
         .then(res => res.json())
         .then((data) => {          
           const arrStickies = data.stickies;
@@ -38,7 +43,7 @@ function App() {
 
     fetch(Config.apiPost, {
       method: 'POST',
-      body: JSON.stringify(sticky ),
+      body: JSON.stringify(sticky),
       headers: { 'Content-Type': 'application/json' },
     })
       .then(res => res.json())
@@ -65,6 +70,12 @@ function App() {
     if(name === 'note'){
       setNote(value);
     }
+  }
+
+  function handleColorClass(data){
+    const colorClass = data.target.parentNode.classList[1];
+    console.log(colorClass);
+    setColorClass(colorClass);
   }
 
   function handleEditNote(data){
@@ -100,13 +111,13 @@ function App() {
                 </div>
                 
                 <TagGroup>
-                  <Tag color="red">Red</Tag>
-                  <Tag color="orange">Orange</Tag>
-                  <Tag color="yellow">Yellow</Tag>
-                  <Tag color="green">Green</Tag>
-                  <Tag color="cyan">Cyan</Tag>
-                  <Tag color="blue">Blue</Tag>
-                  <Tag color="violet">Violet</Tag>
+                  <Tag onClick={handleColorClass} color="red">Red</Tag>
+                  <Tag onClick={handleColorClass} color="orange">Orange</Tag>
+                  <Tag onClick={handleColorClass} color="yellow">Yellow</Tag>
+                  <Tag onClick={handleColorClass} color="green">Green</Tag>
+                  <Tag onClick={handleColorClass} color="cyan">Cyan</Tag>
+                  <Tag onClick={handleColorClass} color="blue">Blue</Tag>
+                  <Tag onClick={handleColorClass} color="violet">Violet</Tag>
                 </TagGroup>
                 <Button appearance="primary" onClick={handleClick} value="+" />
               </section>
@@ -118,6 +129,7 @@ function App() {
                         id={sticky.id}
                         title={sticky.title} 
                         note={sticky.note}
+                        colorClass={sticky.colorClass}
                         editNoteCallback={handleEditNote}
                         editTitleCallback={handleEditTitle}
                         removeStickyCallback={handleClickRemove}

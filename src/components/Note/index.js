@@ -7,12 +7,12 @@ function Note(props) {
 
     const [note, setNote] = useState(props.note);
 
-    function handeChange(value){
+    function handleChange(value){
         setNote(value);
     }
 
     return (
-        <EditTextarea placeholder="Note" value={note} onChange={handeChange}/>
+        <EditTextarea placeholder="Note" value={note} onChange={handleChange}/>
     );
 }
 

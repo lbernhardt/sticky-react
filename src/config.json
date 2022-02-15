@@ -1,5 +1,6 @@
 {
     "api" : "http://localhost:3101/api/",
+    "apiLogin" : "http://localhost:3101/api/signIn",
     "apiGetAll" : "http://localhost:3101/api/stickies",
     "apiPost" : "http://localhost:3101/api/sticky"
 }
